@@ -1,74 +1,117 @@
-🔗 LinkedIn Lead Generation via Google API (n8n Workflow)
-This project is an automated workflow built using n8n to extract LinkedIn profile links for lead generation using the Google Custom Search API. Instead of scraping LinkedIn directly (which violates their terms), this workflow uses Google Search to find publicly available LinkedIn profile pages.
+# 🔗 LinkedIn Lead Generation via Google API (n8n Workflow)
 
-🚀 What This Workflow Does
-This n8n workflow performs the following automated steps:
+This project is an automated workflow built using [n8n](https://n8n.io/) to extract LinkedIn profile links for lead generation using the **Google Custom Search API**.  
+Instead of scraping LinkedIn directly (which violates their terms), this workflow uses Google Search to find publicly available LinkedIn profile pages.
 
-Accepts a search keyword (e.g., Marketing Manager at Microsoft)
+---
 
-Sends a request to Google Custom Search API to get search results
+## 🚀 What This Workflow Does
 
-Extracts public LinkedIn profile URLs from the search response
+This **n8n workflow** performs the following automated steps:
 
-Appends those URLs and relevant data to a Google Sheet
+1. Accepts a search keyword (e.g., `Marketing Manager at Microsoft`)
+2. Sends a request to Google Custom Search API to get search results
+3. Extracts public LinkedIn profile URLs from the search response
+4. Appends those URLs and relevant data to a **Google Sheet**
+5. Supports pagination to loop through multiple result pages automatically
 
-Supports pagination to loop through multiple result pages automatically
+---
 
-🔧 Components Used in the Workflow
-Below is a detailed explanation of each component shown in the image:
+## 🧩 Components Used in the Workflow
 
-Component	Purpose
-🔘 Trigger: "When clicking 'Execute workflow'"	Starts the workflow manually by clicking a button inside n8n. Useful for on-demand lead scraping.
-✏️ Set Fields (Manual Input)	Allows you to manually set search parameters like job title, company, or location. This data will be passed to the Google Search API.
-🌐 HTTP Request	Sends a GET request to Google Custom Search API using your search parameters to get Google results for public LinkedIn profiles.
-🧩 Extract Results	Parses the JSON response from Google to extract only the relevant fields—typically the LinkedIn profile URLs, names, snippets, etc.
-⏸ Wait	Adds a short delay (if needed) between requests to avoid hitting Google API limits too quickly (currently optional).
-📄 Append row in Google Sheet	Takes the parsed data and appends it to a pre-created Google Sheet for recordkeeping or further analysis.
-🔍 Pagination Check	Checks if there's a nextPage available in the Google response, indicating more profiles can be fetched.
-➡️ IF Condition	If a next page exists, the workflow loops back to repeat the request for the next batch of search results. Otherwise, it stops.
+Below is a detailed explanation of each component used in the n8n flow:
 
-💼 Use Cases
-This workflow can be adapted to several lead generation and research use cases:
+| Component                          | Purpose |
+|-----------------------------------|---------|
+| **🔘 Trigger: `Execute Workflow`** | Starts the workflow manually by clicking a button inside n8n. Useful for on-demand lead scraping. |
+| **✏️ Set Fields (Manual Input)**   | Allows you to manually set search parameters like job title, company, or location. |
+| **🌐 HTTP Request**                | Sends a **GET request** to Google Custom Search API using your search parameters to get public LinkedIn profiles. |
+| **🧩 Extract Results**             | Parses the JSON response to extract relevant fields such as profile links and descriptions. |
+| **⏸ Wait**                        | Optional delay to prevent hitting API rate limits (can be customized). |
+| **📄 Append Row in Sheet**        | Appends parsed results to your connected Google Sheet. |
+| **🔍 Pagination Check**           | Detects if additional pages of results are available via `nextPageToken`. |
+| **➡️ IF Condition**               | If more pages are found, the workflow loops back to continue fetching. Otherwise, it stops. |
 
-🧑‍💼 Sales Prospecting: Find potential leads based on job title, industry, or company.
+---
 
-🕵️‍♀️ Recruiter Sourcing: Discover LinkedIn profiles matching job roles you're hiring for.
+## 💼 Use Cases
 
-📢 Influencer Outreach: Identify niche professionals for partnerships or content campaigns.
+This workflow is ideal for:
 
-🎓 Academic Research: Locate experts or alumni from specific fields or universities.
+- 🧑‍💼 **Sales Prospecting** – Generate leads by role, industry, or company
+- 🕵️‍♀️ **Recruiter Sourcing** – Discover candidates for hiring
+- 📢 **Influencer Outreach** – Identify professionals for collaborations
+- 🎓 **Academic Research** – Find experts or alumni from specific universities
 
-⚙️ Setup Instructions
-🔑 Requirements
-An n8n Cloud account (or self-hosted)
+---
 
-A Google Custom Search API key
+## ⚙️ Setup Instructions
 
-A Custom Search Engine (CSE ID) configured to search linkedin.com
+### ✅ Requirements
 
-A Google Sheet with proper headers created
+- [x] An **n8n Cloud** account (or self-hosted instance)
+- [x] A **Google Custom Search API** key
+- [x] A **Custom Search Engine ID (CSE ID)** configured to search `linkedin.com`
+- [x] A **Google Sheet** with column headers
+- [x] A **Google Service Account** connected in n8n for Google Sheets access
 
-A Google Service Account with access to append data to that sheet
+---
 
-📋 Google Sheet Format
-Before running the workflow, create a Google Sheet with headers like:
+### 📋 Google Sheet Format
 
-mathematica
-Copy
-Edit
+Create a Google Sheet with column headers like:
+
 Name | LinkedIn URL | Snippet | Source Title | Position
-Make sure this Sheet is accessible via the service account you’ve authorized in n8n.
 
-🔌 Environment Variables / Secrets
-Store your credentials in n8n securely:
 
-GOOGLE_API_KEY
+Make sure this sheet is shared with the service account email used in n8n.
 
-CSE_ID (Google Programmable Search Engine ID)
+---
 
-GOOGLE_SHEET_ID (The ID of the sheet where data will be appended)
+### 🔐 Secrets / API Keys in n8n
 
-💡 Notes
-This workflow does not scrape LinkedIn directly, ensuring compliance with their terms of service.
+Use the `Credentials` feature in n8n to securely store:
 
-You may still need to handle rate limits manually by inserting delays or batch processing.
+- `GOOGLE_API_KEY`
+- `CSE_ID` (Programmable Search Engine ID)
+- `GOOGLE_SHEET_ID` (Google Sheet ID)
+
+---
+
+## 📁 Workflow Export
+
+You can import the workflow into your own n8n environment using the `.json` export file.  
+> *(Upload the `.json` in this repo or link it here)*
+
+---
+
+## ⚠️ Notes
+
+- This workflow uses Google to find public LinkedIn profiles — it **does not** scrape LinkedIn directly.
+- Add a short delay (via the `Wait` node) to avoid hitting Google API limits during high-volume runs.
+
+---
+
+## ✨ Potential Enhancements
+
+- Integrate email finders (e.g., Hunter, Clearbit)
+- Add lead scoring or filtering logic
+- Sync leads to a CRM (HubSpot, Salesforce, etc.)
+- Trigger from a Google Sheet or webhook
+
+---
+
+## 🙋 About the Author
+
+Made by **Moksha Shah**  
+📬 [LinkedIn](https://www.linkedin.com/in/your-profile)  
+📧 [your.email@example.com] *(optional)*
+
+---
+
+## 📜 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
