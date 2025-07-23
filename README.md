@@ -76,14 +76,6 @@ Use the `Credentials` feature in n8n to securely store:
 - `GOOGLE_API_KEY`
 - `CSE_ID` (Programmable Search Engine ID)
 - `GOOGLE_SHEET_ID` (Google Sheet ID)
-
----
-
-## 📁 Workflow Export
-
-You can import the workflow into your own n8n environment using the `.json` export file.  
-> *(Upload the `.json` in this repo or link it here)*
-
 ---
 
 ## ⚠️ Notes
