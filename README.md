@@ -93,15 +93,6 @@ You can import the workflow into your own n8n environment using the `.json` expo
 
 ---
 
-## ✨ Potential Enhancements
-
-- Integrate email finders (e.g., Hunter, Clearbit)
-- Add lead scoring or filtering logic
-- Sync leads to a CRM (HubSpot, Salesforce, etc.)
-- Trigger from a Google Sheet or webhook
-
----
-
 ## 🙋 About the Author
 
 Made by **Moksha Shah**  
