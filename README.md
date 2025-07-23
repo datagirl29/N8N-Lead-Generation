@@ -2,6 +2,7 @@
 
 This project is an automated workflow built using [n8n](https://n8n.io/) to extract LinkedIn profile links for lead generation using the **Google Custom Search API**.  
 Instead of scraping LinkedIn directly (which violates their terms), this workflow uses Google Search to find publicly available LinkedIn profile pages.
+<img width="2968" height="692" alt="image" src="https://github.com/user-attachments/assets/4416bb59-1308-4461-9b27-35e541a57fab" />
 
 ---
 
@@ -104,14 +105,7 @@ You can import the workflow into your own n8n environment using the `.json` expo
 ## 🙋 About the Author
 
 Made by **Moksha Shah**  
-📬 [LinkedIn](https://www.linkedin.com/in/your-profile)  
-📧 [your.email@example.com] *(optional)*
 
----
-
-## 📜 License
-
-This project is licensed under the [MIT License](LICENSE).
 
 ---
 
