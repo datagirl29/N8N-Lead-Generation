@@ -49,7 +49,7 @@
           "parameters": [
             {
               "name": "key",
-              "value": "AIzaSyBh-YxVvNCX6vng4zjwy398qSy6h-DthNk"
+              "value": "Insert your Key here"
             },
             {
               "name": "cx",
